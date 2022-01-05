@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  /* background-color: aliceblue; */
   display: flex;
-  flex-direction: column;
+  margin: 10px auto;
+}
+.products{
+  padding: 10px 5px;
+  width: 300px;
+  /* border: 1px solid red; */
+  margin: 20px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+.products > div{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1.5px solid rgb(194, 194, 194);
+  margin: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.products div div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button_enable{
+  font-size: 13px;
+  background-color: rgb(13, 180, 185);
+  border: none;
   color: white;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
-
-.App-link {
-  color: #61dafb;
+.button_disable{
+  font-size: 13px;
+  background-color: rgb(177, 177, 177);
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 4px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.products div button{
+  margin: 5px 20px;
+}
+.basket{
+  padding: 10px 0px;
+  width: 400px;
+  /* border: 1px solid red; */
+  margin: 20px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+.basket > h3{
+  margin: 0px 10px;
+  display: inline-block;
+}
+.basket >div{
+  padding: 5px;
+  margin: 3px 0;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+.basket div button{
+  font-size: 13px;
+  background-color: rgb(13, 180, 185);
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.basket >div p{
+  text-align: right;
+  font-size: 12px;
+  margin: 5px;
+  padding: 5px;
+  border-top: 1.5px solid rgb(194, 194, 194);
+}
+.basket_item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.saving{
+  color: red;
+}
+.total_amount div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 5px;
+  font-weight: bold;
+}
+.no_items{
+  color: rgb(185, 185, 185);
+  margin: 40px;
+  text-align: center;
 }
