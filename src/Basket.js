@@ -25,20 +25,29 @@ function Basket() {
         let count = 0;
         let countDiscount = 0;
         basketItems.forEach((data,i)=>{
-            let calculatePrice=0;
             if (data.name==="Cheese" && basket[data.id]===2) {
-                count += data.price * 1;
-                countDiscount+=data.price;
+                count += data.price*1;
+                countDiscount+=parseFloat(data.price);
                 if (!basketItems[i].saving) {
                     basketItems[i].saving = data.price;
                     setBasketItems([...basketItems]);
                 }
             }
-            if (data.name==="Butter" && basket[data.id]===3) {
-                count += data.price * 2;
-                countDiscount+=data.price;
+            if (data.name==="Butter") {
+                count += data.price* basket[data.id];
+                let discount = Number((data.price * basket[data.id])/3).toFixed(2);
+                countDiscount+=parseFloat(discount);
                 if (!basketItems[i].saving) {
-                    basketItems[i].saving = data.price;
+                    basketItems[i].saving = discount;
+                    setBasketItems([...basketItems]);
+                }
+            }
+            if (data.name==="Bread" && (basketItems.findIndex(x => x.name == 'Soup'))!=-1) {
+                count += data.price* basket[data.id];
+                let discount = Number((data.price * basket[data.id])/2).toFixed(2);
+                countDiscount+=parseFloat(discount);
+                if (!basketItems[i].saving) {
+                    basketItems[i].saving = discount;
                     setBasketItems([...basketItems]);
                 }
             }
@@ -46,9 +55,9 @@ function Basket() {
                 count += data.price * basket[data.id];
             }
         })
-        setTotal(count);
-        setTotalDiscount(countDiscount);
-    }, [basket,basketItems])
+        setTotal(Number(count).toFixed(2));
+        setTotalDiscount(Number(countDiscount).toFixed(2));
+    }, [basketItems])
 
 
     return (
@@ -71,17 +80,17 @@ function Basket() {
                             </button>
                         </div>
                         </div>
-                        <p>item price &#8364;{data.price}*{basket[data.id]} = &#8364;{(Math.round((data.price * basket[data.id]) * 100) / 100).toFixed(2)}</p>
+                        <p>item price &#8364;{data.price}*{basket[data.id]} = &#8364;{Number(data.price * basket[data.id]).toFixed(2)}</p>
                         {data.saving?<p className='saving'>Saving &#8364; {data.saving}</p>:""}
-                        <p>item cost &#8364; {(Math.round((data.price * basket[data.id]) * 100) / 100).toFixed(2)}</p>
+                        <p>item cost &#8364; {data.saving?Number((data.price * basket[data.id])-data.saving).toFixed(2):Number(data.price * basket[data.id]).toFixed(2)}</p>
                     </div>
                     )
                 }):<h4 className='no_items'>No Items Found</h4>
             }
             <div className='total_amount'>
-                <div><span>Sub Total: </span><span>&#8364; {(Math.round((total+totalDiscount) * 100) / 100).toFixed(2)}</span></div>
+                <div><span>Sub Total: </span><span>&#8364; {total}</span></div>
                 <div><span>Saving: </span><span>&#8364; {totalDiscount}</span></div>
-                <div><span>Total Amount: </span><span>&#8364; {(Math.round(total * 100) / 100).toFixed(2)}</span></div>
+                <div><span>Total Amount: </span><span>&#8364; {Number(total-totalDiscount).toFixed(2)}</span></div>
 
             </div>
         </div>
