@@ -25,11 +25,11 @@ function Basket() {
         let count = 0;
         let countDiscount = 0;
         basketItems.forEach((data,i)=>{
-            if (data.name==="Cheese" && basket[data.id]===2) {
-                count += data.price*1;
-                countDiscount+=parseFloat(data.price);
+            if (data.name==="Cheese" && basket[data.id]>=2) {
+                count += (data.price*basket[data.id])/2;
+                countDiscount+=parseFloat((data.price*basket[data.id])/2);
                 if (!basketItems[i].saving) {
-                    basketItems[i].saving = data.price;
+                    basketItems[i].saving = (data.price*basket[data.id])/2;
                     setBasketItems([...basketItems]);
                 }
             }
