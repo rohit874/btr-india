@@ -26,14 +26,14 @@ function Basket() {
         let countDiscount = 0;
         basketItems.forEach((data,i)=>{
             if (data.name==="Cheese" && basket[data.id]>=2) {
-                count += (data.price*basket[data.id])/2;
+                count += data.price*basket[data.id];
                 countDiscount+=parseFloat((data.price*basket[data.id])/2);
                 if (!basketItems[i].saving) {
                     basketItems[i].saving = (data.price*basket[data.id])/2;
                     setBasketItems([...basketItems]);
                 }
             }
-            if (data.name==="Butter") {
+            else if (data.name==="Butter") {
                 count += data.price* basket[data.id];
                 let discount = Number((data.price * basket[data.id])/3).toFixed(2);
                 countDiscount+=parseFloat(discount);
@@ -42,7 +42,7 @@ function Basket() {
                     setBasketItems([...basketItems]);
                 }
             }
-            if (data.name==="Bread" && (basketItems.findIndex(x => x.name == 'Soup'))!=-1) {
+            else if (data.name==="Bread" && (basketItems.findIndex(x => x.name == 'Soup'))!=-1) {
                 count += data.price* basket[data.id];
                 let discount = Number((data.price * basket[data.id])/2).toFixed(2);
                 countDiscount+=parseFloat(discount);
